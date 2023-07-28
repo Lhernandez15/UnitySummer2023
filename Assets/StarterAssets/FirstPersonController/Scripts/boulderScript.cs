@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class boulderScript : MonoBehaviour
 {
+    public Transform PlayerSpawn;
     public Vector3 startPos; 
     Rigidbody rb;
     [Tooltip("adjusts the thrust of the object.")]
@@ -34,6 +35,15 @@ public class boulderScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "player")
         {
+            PlayerSpawn = GameObject.Find("PlayerSpawn").transform;
+            collision.gameObject.transform.parent.GetComponent<CharacterController>().enabled = false;
+            collision.gameObject.transform.parent.position = PlayerSpawn.position;
+            collision.gameObject.transform.parent.GetComponent<CharacterController>().enabled = true;
+            score.AddScore();
+        }
+
+        if (collision.gameObject.CompareTag("BoulderReset"))
+        {
             ResetBoulder();
         }
     }
@@ -42,6 +52,5 @@ public class boulderScript : MonoBehaviour
     {
         transform.position = startPos;
         rb.velocity = Vector3.zero; //Vector3(0,0,0);
-        score.AddScore();
     }
 }
