@@ -33,7 +33,7 @@ public class boulderScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "player")
+        if(collision.gameObject.tag == "Capsule")
         {
             PlayerSpawn = GameObject.Find("PlayerSpawn").transform;
             collision.gameObject.transform.parent.GetComponent<CharacterController>().enabled = false;

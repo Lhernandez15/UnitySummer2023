@@ -21,6 +21,14 @@ public class MessageScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        messageBox.SetActive(false);
+        if (Input.GetKeyUp(KeyCode.Escape)) 
+        {
+            Application.Quit();
+        }
+
+        if(other.gameObject.CompareTag("Capsule"))
+        {
+            messageBox.SetActive(false);
+        }
     }
 }
